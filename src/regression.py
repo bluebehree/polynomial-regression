@@ -116,8 +116,6 @@ class PolynomialRegression() :
         
         ### ========== TODO : START ========== ###
         # part b: modify to create matrix for simple linear model
-        # part g: modify to create matrix for polynomial model
-        # Phi = X
         m = self.m_
 
         # Use Python's list comprehension, map, and lambda
@@ -126,13 +124,11 @@ class PolynomialRegression() :
         # Map will return a list for each value in X, and combined it will
         # make a numpy array with dimensions (n, m+1)
 
+        # part g: modify to create matrix for polynomial model
         # Need the x[0] because we are grabbing an element from a numpy array
-        Phi = np.array([map(lambda n: pow(x[0], n), range(0, m+1)) for x in X])
-        # print Phi
-        # print Phi.shape
+        Phi = np.array([list(map(lambda n: pow(x[0], n), range(0, m+1))) for x in X])
 
         ### ========== TODO : END ========== ###
-        
         return Phi
     
     
@@ -171,7 +167,6 @@ class PolynomialRegression() :
         
         X = self.generate_polynomial_features(X) # map features
         n,d = X.shape
-        eta_input = eta
         self.coef_ = np.zeros(d)                 # coefficients
         err_list  = np.zeros((tmax,1))           # errors per iteration
         
@@ -181,17 +176,14 @@ class PolynomialRegression() :
             # part f: update step size
             # change the default eta in the function signature to 'eta=None'
             # and update the line below to your learning rate function
-            if eta_input is None :
-                eta = 1 / float(1+t+1) # change this line
-            else:
-                eta = eta_input
+            if eta is None :
+                eta = 1 / float(1+t+1)
+
             ### ========== TODO : END ========== ###
                 
             ### ========== TODO : START ========== ###
             # part d: update theta (self.coef_) using one step of GD
             # hint: you can write simultaneously update all theta using vector math
-
-            #self.coef_ = self.coef_ - eta*(np.dot((np.dot(X.T, X)), self.coef_) - np.dot(X.T, y))
             self.coef_ = self.coef_ - eta * (np.dot(np.dot(X.T, X), self.coef_ ) - np.dot(X.T, y))
 
             # track error
@@ -225,7 +217,7 @@ class PolynomialRegression() :
         return self, t+1, time.time() - start_time
     
     
-    def fit(self, X, y, l2regularize = None ) :
+    def fit(self, X, y, l2regularize=None) :
         """
         Finds the coefficients of a {d-1}^th degree polynomial
         that fits the data using the closed form solution.
@@ -298,7 +290,7 @@ class PolynomialRegression() :
 
         # Cost function of linear regression is:
         # J(theta) = sum( (y_n - h_theta(x_n))^2 )
-        cost = sum(((y - self.predict(X))**2))
+        cost = np.sum((y - self.predict(X))**2)
 
         ### ========== TODO : END ========== ###    
 
@@ -351,7 +343,7 @@ def main() :
     
     ### ========== TODO : START ========== ###
     # part a: main code for visualizations
-    print('Visualizing data...')
+    # print('Visualizing data...')
 
     # Grab the X,y data from train_data
     train_X = train_data.X
@@ -365,7 +357,7 @@ def main() :
     # plot_data(train_X, train_y)
     # plot_data(test_X, test_y)
 
-    print('Finished visualizing data!')
+    # print('Finished visualizing data!')
     
     ### ========== TODO : END ========== ###
     
@@ -378,30 +370,30 @@ def main() :
 
 	# Part di.    
     model = PolynomialRegression()
-    # model.coef_ = np.zeros(2)
-    # print model.cost(train_X, train_y)
+    model.coef_ = np.zeros((1,2))
+    print(model.cost(train_X, train_y))
 
     # Part d ii. and iii.
-    # print('Fitting with Gradient Descent...')
-    # etas = [0.0001, 0.001, 0.01, 0.0407]
-    # info = []
+    print('Fitting with Gradient Descent...')
+    etas = [0.0001, 0.001, 0.01, 0.0407]
+    info = []
 
-    # for eta in etas:
-    # 	model, num_iters, time = model.fit_GD(X=train_X, y=train_y, eta=eta, verbose=False)
-    # 	info.append({'eta': eta, 'coefficient': model.coef_, 'num_iters': num_iters, 'cost': model.cost(train_X, train_y), 'time': time})
+    for eta in etas:
+    	model, num_iters, time = model.fit_GD(X=train_X, y=train_y, eta=eta, verbose=False)
+    	info.append({'eta': eta, 'coefficient': model.coef_, 'num_iters': num_iters, 'cost': model.cost(train_X, train_y), 'time': time})
 
-    # print('')
+    print('')
 
-    # for item in info:
-    # 	print('For eta ' + str(item['eta']))
-    # 	print('Coefficient:')
-    # 	print(item['coefficient'])
-    # 	print('Number of iterations: ' + str(item['num_iters']))
-    # 	print('Final value of objective function:')
-    # 	print(item['cost'])
-    # 	print('Total time elapsed:')
-    # 	print(item['time'])
-    # 	print('')
+    for item in info:
+    	print('For eta ' + str(item['eta']))
+    	print('Coefficient:')
+    	print(item['coefficient'])
+    	print('Number of iterations: ' + str(item['num_iters']))
+    	print('Final value of objective function:')
+    	print(item['cost'])
+    	print('Total time elapsed:')
+    	print(item['time'])
+    	print('')
 
     # Part e
 
@@ -415,23 +407,23 @@ def main() :
     # print('Total time elapsed:')
     # print(time)
 
-    print('')
+    # print('')
 
     # Part f
-    print('Investigating part f learning rate for GD...')
-    model, num_iters, time = model.fit_GD(X=train_X, y=train_y)
+    # print('Investigating part f learning rate for GD...')
+    # model, num_iters, time = model.fit_GD(X=train_X, y=train_y)
 
-    print('Coefficients:')
-    print(model.coef_)
-    print('Number of iterations for part f GD: ' + str(num_iters))
-    print('Final value of objective function:')
-    print(model.cost(train_X, train_y))
-    print('Total time elapsed:')
-    print(time)
+    # print('Coefficients:')
+    # print(model.coef_)
+    # print('Number of iterations for part f GD: ' + str(num_iters))
+    # print('Final value of objective function:')
+    # print(model.cost(train_X, train_y))
+    # print('Total time elapsed:')
+    # print(time)
 
-    print('')
+    # print('')
 
-    print('Finished investigating linear regression!')
+    # print('Finished investigating linear regression!')
 
     ### ========== TODO : END ========== ###
     
@@ -439,39 +431,39 @@ def main() :
     
     ### ========== TODO : START ========== ###
     # parts g-i: main code for polynomial regression
-    print('Investigating polynomial regression...')
+    # print('Investigating polynomial regression...')
 
-    train_rmse = {}
-    test_rmse = {}
+    # train_rmse = {}
+    # test_rmse = {}
 
-    for m in range(0, 11):
-    	model = PolynomialRegression(m=m)
-    	model.fit(train_X, train_y)
-    	train_rmse[m] = model.rms_error(train_X, train_y)
-    	test_rmse[m] = model.rms_error(test_X, test_y)
+    # for m in range(0, 11):
+    # 	model = PolynomialRegression(m=m)
+    # 	model.fit(train_X, train_y)
+    # 	train_rmse[m] = model.rms_error(train_X, train_y)
+    # 	test_rmse[m] = model.rms_error(test_X, test_y)
 
-    print('Plotting RMSE...')
-    plt.plot(train_rmse.keys(), train_rmse.values(), 'b', label='Training Data')
-    plt.plot(test_rmse.keys(), test_rmse.values(), 'r', label='Testing Data')
-    plt.xlabel('Model Complexity')
-    plt.ylabel('RMSE')
-    plt.legend()
-    plt.show()
+    # print('Plotting RMSE...')
+    # plt.plot(train_rmse.keys(), train_rmse.values(), 'b', label='Training Data')
+    # plt.plot(test_rmse.keys(), test_rmse.values(), 'r', label='Testing Data')
+    # plt.xlabel('Model Complexity')
+    # plt.ylabel('RMSE')
+    # plt.legend()
+    # plt.show()
 
-    # Get minimum RMSE for testing data
-    best_m = min(test_rmse, key=test_rmse.get)
-    print('')
-    print('Polynomial with least RMSE: ' + str(best_m))
-    print('RMSE: ')
-    print(test_rmse[best_m])
-    print('')
+    # # Get minimum RMSE for testing data
+    # best_m = min(test_rmse, key=test_rmse.get)
+    # print('')
+    # print('Polynomial with least RMSE: ' + str(best_m))
+    # print('RMSE: ')
+    # print(test_rmse[best_m])
+    # print('')
 
-    # m = 8 has comparable RMSE to m =5
-    print('Polynomial m = 8 RMSE:')
-    print(test_rmse[8])
-    print('')
+    # # m = 8 has comparable RMSE to m =5
+    # print('Polynomial m = 8 RMSE:')
+    # print(test_rmse[8])
+    # print('')
 
-    print('Finished investigating polynomial regression!')
+    # print('Finished investigating polynomial regression!')
     ### ========== TODO : END ========== ###
 
 if __name__ == "__main__" :
