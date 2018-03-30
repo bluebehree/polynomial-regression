@@ -367,14 +367,14 @@ def main() :
     ### ========== TODO : START ========== ###
     # parts b-f: main code for linear regression
 
-    print('Investigating linear regression...')
+    # print('Investigating linear regression...')
 
-	# Part di.    
-    model = PolynomialRegression()
-    # model.coef_ = np.zeros((1,2))
+	# # Part di.    
+    # model = PolynomialRegression()
+    # model.coef_ = np.zeros(2)
     # print(model.cost(train_X, train_y))
 
-    # Part d ii. and iii.
+    # # Part d ii. and iii.
     # print('Fitting with Gradient Descent...')
     # etas = [0.0001, 0.001, 0.01, 0.0407]
     # info = []
@@ -396,7 +396,7 @@ def main() :
     # 	print(item['time'])
     # 	print('')
 
-    # Part e
+    # # Part e
     # model, time = model.fit(X=train_X, y=train_y)
     # print('')
     # print('Closed-form linear regression information:')
@@ -408,61 +408,59 @@ def main() :
     # print(time)
     # print('')
 
-    # Part f
-    print('Investigating part f learning rate for GD...')
-    model, num_iters, time = model.fit_GD(X=train_X, y=train_y)
+    # # Part f
+    # print('Investigating part f learning rate for GD...')
+    # model, num_iters, time = model.fit_GD(X=train_X, y=train_y)
 
-    print('Coefficients:')
-    print(model.coef_)
-    print('Number of iterations for part f GD: ' + str(num_iters))
-    print('Final value of objective function:')
-    print(model.cost(train_X, train_y))
-    print('Total time elapsed:')
-    print(time)
+    # print('Coefficients:')
+    # print(model.coef_)
+    # print('Number of iterations for part f GD: ' + str(num_iters))
+    # print('Final value of objective function:')
+    # print(model.cost(train_X, train_y))
+    # print('Total time elapsed:')
+    # print(time)
 
-    print('')
-
-    print('Finished investigating linear regression!')
+    # print('')
+    # print('Finished investigating linear regression!')
+    # print('')
 
     ### ========== TODO : END ========== ###
     
-    
-    
     ### ========== TODO : START ========== ###
     # parts g-i: main code for polynomial regression
-    # print('Investigating polynomial regression...')
+    print('Investigating polynomial regression...')
 
-    # train_rmse = {}
-    # test_rmse = {}
+    train_rmse = {}
+    test_rmse = {}
 
-    # for m in range(0, 11):
-    # 	model = PolynomialRegression(m=m)
-    # 	model.fit(train_X, train_y)
-    # 	train_rmse[m] = model.rms_error(train_X, train_y)
-    # 	test_rmse[m] = model.rms_error(test_X, test_y)
+    for m in range(0, 11):
+    	model = PolynomialRegression(m=m)
+    	model.fit(train_X, train_y)
+    	train_rmse[m] = model.rms_error(train_X, train_y)
+    	test_rmse[m] = model.rms_error(test_X, test_y)
 
-    # print('Plotting RMSE...')
-    # plt.plot(train_rmse.keys(), train_rmse.values(), 'b', label='Training Data')
-    # plt.plot(test_rmse.keys(), test_rmse.values(), 'r', label='Testing Data')
-    # plt.xlabel('Model Complexity')
-    # plt.ylabel('RMSE')
-    # plt.legend()
-    # plt.show()
+    print('Plotting RMSE...')
+    plt.plot(list(train_rmse.keys()), list(train_rmse.values()), 'b', label='Training Data')
+    plt.plot(list(test_rmse.keys()), list(test_rmse.values()), 'r', label='Testing Data')
+    plt.xlabel('Model Complexity')
+    plt.ylabel('RMSE')
+    plt.legend()
+    plt.show()
 
-    # # Get minimum RMSE for testing data
-    # best_m = min(test_rmse, key=test_rmse.get)
-    # print('')
-    # print('Polynomial with least RMSE: ' + str(best_m))
-    # print('RMSE: ')
-    # print(test_rmse[best_m])
-    # print('')
+    # Get minimum RMSE for testing data
+    best_m = min(test_rmse, key=test_rmse.get)
+    print('')
+    print('Polynomial with least RMSE: ' + str(best_m))
+    print('RMSE: ')
+    print(test_rmse[best_m])
+    print('')
 
-    # # m = 8 has comparable RMSE to m =5
-    # print('Polynomial m = 8 RMSE:')
-    # print(test_rmse[8])
-    # print('')
+    # m = 8 has comparable RMSE to m =5
+    print('Polynomial m = 8 RMSE:')
+    print(test_rmse[8])
+    print('')
 
-    # print('Finished investigating polynomial regression!')
+    print('Finished investigating polynomial regression!')
     ### ========== TODO : END ========== ###
 
 if __name__ == "__main__" :
