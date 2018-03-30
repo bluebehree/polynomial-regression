@@ -344,7 +344,7 @@ def main() :
     
     ### ========== TODO : START ========== ###
     # part a: main code for visualizations
-    # print('Visualizing data...')
+    print('Visualizing data...')
 
     # Grab the X,y data from train_data
     train_X = train_data.X
@@ -355,10 +355,10 @@ def main() :
     test_y = test_data.y
 
     # Plots the training and testing data
-    # plot_data(train_X, train_y)
-    # plot_data(test_X, test_y)
+    plot_data(train_X, train_y)
+    plot_data(test_X, test_y)
 
-    # print('Finished visualizing data!')
+    print('Finished visualizing data!')
     
     ### ========== TODO : END ========== ###
     
@@ -367,62 +367,62 @@ def main() :
     ### ========== TODO : START ========== ###
     # parts b-f: main code for linear regression
 
-    # print('Investigating linear regression...')
+    print('Investigating linear regression...')
 
-	# # Part di.    
-    # model = PolynomialRegression()
-    # model.coef_ = np.zeros(2)
-    # print(model.cost(train_X, train_y))
+	# Part di.    
+    model = PolynomialRegression()
+    model.coef_ = np.zeros(2)
+    print(model.cost(train_X, train_y))
 
-    # # Part d ii. and iii.
-    # print('Fitting with Gradient Descent...')
-    # etas = [0.0001, 0.001, 0.01, 0.0407]
-    # info = []
+    # Part d ii. and iii.
+    print('Fitting with Gradient Descent...')
+    etas = [0.0001, 0.001, 0.01, 0.0407]
+    info = []
 
-    # for eta in etas:
-    # 	model, num_iters, time = model.fit_GD(X=train_X, y=train_y, eta=eta, verbose=False)
-    # 	info.append({'eta': eta, 'coefficient': model.coef_, 'num_iters': num_iters, 'cost': model.cost(train_X, train_y), 'time': time})
+    for eta in etas:
+    	model, num_iters, time = model.fit_GD(X=train_X, y=train_y, eta=eta, verbose=False)
+    	info.append({'eta': eta, 'coefficient': model.coef_, 'num_iters': num_iters, 'cost': model.cost(train_X, train_y), 'time': time})
 
-    # print('')
+    print('')
 
-    # for item in info:
-    # 	print('For eta ' + str(item['eta']))
-    # 	print('Coefficient:')
-    # 	print(item['coefficient'])
-    # 	print('Number of iterations: ' + str(item['num_iters']))
-    # 	print('Final value of objective function:')
-    # 	print(item['cost'])
-    # 	print('Total time elapsed:')
-    # 	print(item['time'])
-    # 	print('')
+    for item in info:
+    	print('For eta ' + str(item['eta']))
+    	print('Coefficient:')
+    	print(item['coefficient'])
+    	print('Number of iterations: ' + str(item['num_iters']))
+    	print('Final value of objective function:')
+    	print(item['cost'])
+    	print('Total time elapsed:')
+    	print(item['time'])
+    	print('')
 
     # # Part e
-    # model, time = model.fit(X=train_X, y=train_y)
-    # print('')
-    # print('Closed-form linear regression information:')
-    # print('Coefficients:')
-    # print(model.coef_)
-    # print('Final value of objective function:')
-    # print(model.cost(train_X, train_y))
-    # print('Total time elapsed:')
-    # print(time)
-    # print('')
+    model, time = model.fit(X=train_X, y=train_y)
+    print('')
+    print('Closed-form linear regression information:')
+    print('Coefficients:')
+    print(model.coef_)
+    print('Final value of objective function:')
+    print(model.cost(train_X, train_y))
+    print('Total time elapsed:')
+    print(time)
+    print('')
 
-    # # Part f
-    # print('Investigating part f learning rate for GD...')
-    # model, num_iters, time = model.fit_GD(X=train_X, y=train_y)
+    # Part f
+    print('Investigating part f learning rate for GD...')
+    model, num_iters, time = model.fit_GD(X=train_X, y=train_y)
 
-    # print('Coefficients:')
-    # print(model.coef_)
-    # print('Number of iterations for part f GD: ' + str(num_iters))
-    # print('Final value of objective function:')
-    # print(model.cost(train_X, train_y))
-    # print('Total time elapsed:')
-    # print(time)
+    print('Coefficients:')
+    print(model.coef_)
+    print('Number of iterations for part f GD: ' + str(num_iters))
+    print('Final value of objective function:')
+    print(model.cost(train_X, train_y))
+    print('Total time elapsed:')
+    print(time)
 
-    # print('')
-    # print('Finished investigating linear regression!')
-    # print('')
+    print('')
+    print('Finished investigating linear regression!')
+    print('')
 
     ### ========== TODO : END ========== ###
     
