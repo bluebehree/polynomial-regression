@@ -158,7 +158,7 @@ class PolynomialRegression() :
         if self.lambda_ != 0 :
             raise Exception("GD with regularization not implemented")
         
-        if verbose :
+        if verbose:
             plt.subplot(1, 2, 2)
             plt.xlabel('iteration')
             plt.ylabel(r'$J(\theta)$')
@@ -167,7 +167,8 @@ class PolynomialRegression() :
         
         X = self.generate_polynomial_features(X) # map features
         n,d = X.shape
-        self.coef_ = np.zeros(d)                 # coefficients
+        eta_input = eta
+        self.coef_ = np.zeros(d)               # coefficients
         err_list  = np.zeros((tmax,1))           # errors per iteration
         
         # GD loop
@@ -176,7 +177,7 @@ class PolynomialRegression() :
             # part f: update step size
             # change the default eta in the function signature to 'eta=None'
             # and update the line below to your learning rate function
-            if eta is None :
+            if eta_input is None:
                 eta = 1 / float(1+t+1)
 
             ### ========== TODO : END ========== ###
@@ -370,33 +371,32 @@ def main() :
 
 	# Part di.    
     model = PolynomialRegression()
-    model.coef_ = np.zeros((1,2))
-    print(model.cost(train_X, train_y))
+    # model.coef_ = np.zeros((1,2))
+    # print(model.cost(train_X, train_y))
 
     # Part d ii. and iii.
-    print('Fitting with Gradient Descent...')
-    etas = [0.0001, 0.001, 0.01, 0.0407]
-    info = []
+    # print('Fitting with Gradient Descent...')
+    # etas = [0.0001, 0.001, 0.01, 0.0407]
+    # info = []
 
-    for eta in etas:
-    	model, num_iters, time = model.fit_GD(X=train_X, y=train_y, eta=eta, verbose=False)
-    	info.append({'eta': eta, 'coefficient': model.coef_, 'num_iters': num_iters, 'cost': model.cost(train_X, train_y), 'time': time})
+    # for eta in etas:
+    # 	model, num_iters, time = model.fit_GD(X=train_X, y=train_y, eta=eta, verbose=False)
+    # 	info.append({'eta': eta, 'coefficient': model.coef_, 'num_iters': num_iters, 'cost': model.cost(train_X, train_y), 'time': time})
 
-    print('')
+    # print('')
 
-    for item in info:
-    	print('For eta ' + str(item['eta']))
-    	print('Coefficient:')
-    	print(item['coefficient'])
-    	print('Number of iterations: ' + str(item['num_iters']))
-    	print('Final value of objective function:')
-    	print(item['cost'])
-    	print('Total time elapsed:')
-    	print(item['time'])
-    	print('')
+    # for item in info:
+    # 	print('For eta ' + str(item['eta']))
+    # 	print('Coefficient:')
+    # 	print(item['coefficient'])
+    # 	print('Number of iterations: ' + str(item['num_iters']))
+    # 	print('Final value of objective function:')
+    # 	print(item['cost'])
+    # 	print('Total time elapsed:')
+    # 	print(item['time'])
+    # 	print('')
 
     # Part e
-
     # model, time = model.fit(X=train_X, y=train_y)
     # print('')
     # print('Closed-form linear regression information:')
@@ -406,24 +406,23 @@ def main() :
     # print(model.cost(train_X, train_y))
     # print('Total time elapsed:')
     # print(time)
-
     # print('')
 
     # Part f
-    # print('Investigating part f learning rate for GD...')
-    # model, num_iters, time = model.fit_GD(X=train_X, y=train_y)
+    print('Investigating part f learning rate for GD...')
+    model, num_iters, time = model.fit_GD(X=train_X, y=train_y)
 
-    # print('Coefficients:')
-    # print(model.coef_)
-    # print('Number of iterations for part f GD: ' + str(num_iters))
-    # print('Final value of objective function:')
-    # print(model.cost(train_X, train_y))
-    # print('Total time elapsed:')
-    # print(time)
+    print('Coefficients:')
+    print(model.coef_)
+    print('Number of iterations for part f GD: ' + str(num_iters))
+    print('Final value of objective function:')
+    print(model.cost(train_X, train_y))
+    print('Total time elapsed:')
+    print(time)
 
-    # print('')
+    print('')
 
-    # print('Finished investigating linear regression!')
+    print('Finished investigating linear regression!')
 
     ### ========== TODO : END ========== ###
     
