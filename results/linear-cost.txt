@@ -1,0 +1,59 @@
+Visualizing data...
+Finished visualizing data!
+Investigating linear regression...
+40.2338474097
+Fitting with Gradient Descent...
+number of iterations: 10000
+number of iterations: 10000
+number of iterations: 1486
+number of iterations: 378
+
+For eta 0.0001
+Coefficient:
+[ 1.91573585 -1.74358989]
+Number of iterations: 10000
+Final value of objective function:
+5.49356558874
+Total time elapsed:
+0.473321199417
+
+For eta 0.001
+Coefficient:
+[ 2.4463815  -2.81630184]
+Number of iterations: 10000
+Final value of objective function:
+3.91257640947
+Total time elapsed:
+0.472207069397
+
+For eta 0.01
+Coefficient:
+[ 2.44640698 -2.81635337]
+Number of iterations: 1486
+Final value of objective function:
+3.91257640579
+Total time elapsed:
+0.0661120414734
+
+For eta 0.0407
+Coefficient:
+[ 2.44640705 -2.8163535 ]
+Number of iterations: 378
+Final value of objective function:
+3.91257640579
+Total time elapsed:
+0.0174980163574
+
+
+Closed-form linear regression information:
+Coefficients:
+[ 2.44640705 -2.8163535 ]
+Final value of objective function:
+3.91257640579
+Total time elapsed:
+0.000322103500366
+
+Finished investigating linear regression!
+Investigating polynomial regression...
+Investigating regularized regression...
+Done!

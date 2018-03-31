@@ -360,11 +360,11 @@ def main() :
 
     print('Finished visualizing data!')
     
-    ### ========== TODO : END ========== ###
+    # ### ========== TODO : END ========== ###
     
     
     
-    ### ========== TODO : START ========== ###
+    # ### ========== TODO : START ========== ###
     # parts b-f: main code for linear regression
 
     print('Investigating linear regression...')
@@ -434,10 +434,10 @@ def main() :
     test_rmse = {}
 
     for m in range(0, 11):
-    	model = PolynomialRegression(m=m)
-    	model.fit(train_X, train_y)
-    	train_rmse[m] = model.rms_error(train_X, train_y)
-    	test_rmse[m] = model.rms_error(test_X, test_y)
+        model = PolynomialRegression(m=m)
+        model.fit(train_X, train_y)
+        train_rmse[m] = model.rms_error(train_X, train_y)
+        test_rmse[m] = model.rms_error(test_X, test_y)
 
     print('Plotting RMSE...')
     plt.plot(list(train_rmse.keys()), list(train_rmse.values()), 'b', label='Training Data')

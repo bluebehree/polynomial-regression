@@ -1,0 +1,78 @@
+Visualizing data...
+Investigating polynomial regression...
+m is: 0
+Cost on training data:
+14.6910582452
+Cost on testing data:
+11.1682001622
+
+m is: 1
+Cost on training data:
+3.91257640579
+Cost on testing data:
+7.04709961629
+
+m is: 2
+Cost on training data:
+3.89517797871
+Cost on testing data:
+7.09743297154
+
+m is: 3
+Cost on training data:
+1.19334902686
+Cost on testing data:
+2.76683155047
+
+m is: 4
+Cost on training data:
+1.05508341638
+Cost on testing data:
+2.64892593676
+
+m is: 5
+Cost on training data:
+1.02886759303
+Cost on testing data:
+2.5224563284
+
+m is: 6
+Cost on training data:
+1.00758251983
+Cost on testing data:
+2.70039254081
+
+m is: 7
+Cost on training data:
+0.988185212742
+Cost on testing data:
+3.6126410477
+
+m is: 8
+Cost on training data:
+0.987995263972
+Cost on testing data:
+3.29134289402
+
+m is: 9
+Cost on training data:
+0.897005711568
+Cost on testing data:
+43.8643144914
+
+m is: 10
+Cost on training data:
+0.896246031262
+Cost on testing data:
+80.6310807288
+
+Plotting RMSE...
+
+Polynomial with least RMSE: 5
+RMSE: 
+0.355137742883
+
+Polynomial m = 8 RMSE:
+0.405668762294
+
+Finished investigating polynomial regression!
